@@ -8,8 +8,8 @@ interface seiyuuProps {
   }[]
 }
 
-const Home: NextPage<seiyuuProps> = ({data}) => {
-  console.log(data);
+const Home: NextPage<seiyuuProps> = ({seiyuu}) => {
+  console.log(seiyuu);
   return (
     <>
       <Head>
@@ -19,6 +19,11 @@ const Home: NextPage<seiyuuProps> = ({data}) => {
       </Head>
       <main className="">
         <h2>Brrrrrah</h2>
+        {seiyuu.map((seiyuu) => (
+          <>
+            <h2>{seiyuu.name}</h2>
+          </>
+        ))}
       </main>
     </>
   );
@@ -29,8 +34,9 @@ export async function getServerSideProps() {
     "https://api.jikan.moe/v4/people?order_by=favorites&sort=desc&limit=15"
   );
   const data = await res.json();
+  const seiyuu = data.data;
 
-  return { props: data };
+  return { props: {seiyuu} };
 }
 
 export default Home;
