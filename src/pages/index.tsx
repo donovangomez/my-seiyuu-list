@@ -1,22 +1,23 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
+import SeiyuuCard from "~/components/SeiyuuCard";
 
 interface seiyuuProps {
   seiyuu: {
-    mal_id: number,
-    name: string,
-    website_url: string,
-    url: string,
+    mal_id: number;
+    name: string;
+    website_url: string;
+    url: string;
     images: {
       jpg: {
-        image_url: string
-      }
-    }
-  }[]
+        image_url: string;
+      };
+    };
+  }[];
 }
 
-const Home: NextPage<seiyuuProps> = ({seiyuu}) => {
+const Home: NextPage<seiyuuProps> = ({ seiyuu }) => {
   console.log(seiyuu);
   return (
     <>
@@ -27,11 +28,18 @@ const Home: NextPage<seiyuuProps> = ({seiyuu}) => {
       </Head>
       <main className="">
         <h2>Brrrrrah</h2>
-        {seiyuu.map((seiyuu) => (
-          <>
-            <h2>{seiyuu.name}</h2>
-          </>
-        ))}
+        <div>
+          {seiyuu.map((seiyuu) => (
+            <div key={seiyuu.mal_id}>
+              <SeiyuuCard
+                name={seiyuu.name}
+                website_url={seiyuu.website_url}
+                url={seiyuu.url}
+                image_url={seiyuu.images.jpg.image_url}
+              />
+            </div>
+          ))}
+        </div>
       </main>
     </>
   );
@@ -44,7 +52,7 @@ export async function getServerSideProps() {
   const data = await res.json();
   const seiyuu = data.data;
 
-  return { props: {seiyuu} };
+  return { props: { seiyuu } };
 }
 
 export default Home;
