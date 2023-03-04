@@ -4,7 +4,15 @@ import Link from "next/link";
 
 interface seiyuuProps {
   seiyuu: {
-    name: string
+    mal_id: number,
+    name: string,
+    website_url: string,
+    url: string,
+    images: {
+      jpg: {
+        image_url: string
+      }
+    }
   }[]
 }
 
