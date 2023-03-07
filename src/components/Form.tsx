@@ -1,6 +1,21 @@
 import React from "react";
+import SeiyuuCard from "./SeiyuuCard";
 
-const Form: React.FC = () => {
+interface seiyuuProps {
+    seiyuu: {
+      mal_id: number;
+      name: string;
+      website_url: string;
+      url: string;
+      images: {
+        jpg: {
+          image_url: string;
+        };
+      };
+    }[];
+  }
+
+const Form: React.FC<seiyuuProps> = () => {
   const [searchInput, setSearchInput] = React.useState("Uwu");
   const [seiyuu, setSeiyuu] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
@@ -38,7 +53,18 @@ const Form: React.FC = () => {
         value={searchInput}
       />
       <button onClick={handleSearch}>Search</button>
-      <div></div>
+      <div>
+      {seiyuu.map((seiyuu) => (
+          <div key={seiyuu.mal_id}>
+            <SeiyuuCard
+              name={seiyuu.name}
+              website_url={seiyuu.website_url}
+              url={seiyuu.url}
+              image_url={seiyuu.images.jpg.image_url}
+            />
+          </div>
+        ))}
+      </div>
     </form>
   );
 };
