@@ -1,3 +1,5 @@
+import SeiyuuCard from "./SeiyuuCard"
+
 interface seiyuuProps {
     seiyuu: {
       mal_id: number,
@@ -17,19 +19,18 @@ const FeaturedSeiyuu: React.FC<seiyuuProps> = ({seiyuu}) => {
     return(
         <>
           <h2>This is the seiyuu container</h2>
-      
+          {seiyuu.map((seiyuu) => (
+            <div key={seiyuu.mal_id}>
+              <SeiyuuCard
+                name={seiyuu.name}
+                website_url={seiyuu.website_url}
+                url={seiyuu.url}
+                image_url={seiyuu.images.jpg.image_url}
+              />
+            </div>
+          ))}
         </>
     )
 }
-
-export async function getServerSideProps() {
-    const res = await fetch(
-      "https://api.jikan.moe/v4/people?order_by=favorites&sort=desc&limit=15"
-    );
-    const data = await res.json();
-    const seiyuu = data.data;
-  
-    return { props: {seiyuu} };
-  }
 
 export default FeaturedSeiyuu;

@@ -2,6 +2,7 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import SeiyuuCard from "~/components/SeiyuuCard";
+import FeaturedSeiyuu from "~/components/FeaturedSeiyuu";
 
 interface seiyuuProps {
   seiyuu: {
@@ -28,17 +29,8 @@ const Home: NextPage<seiyuuProps> = ({ seiyuu }) => {
       </Head>
       <main className="">
         <h2>Brrrrrah</h2>
-        <div>
-          {seiyuu.map((seiyuu) => (
-            <div key={seiyuu.mal_id}>
-              <SeiyuuCard
-                name={seiyuu.name}
-                website_url={seiyuu.website_url}
-                url={seiyuu.url}
-                image_url={seiyuu.images.jpg.image_url}
-              />
-            </div>
-          ))}
+        <div className="border-2 border-emerald-600 flex flex-wrap gap-4 justify-center">
+          <FeaturedSeiyuu seiyuu={seiyuu}/>
         </div>
       </main>
     </>
