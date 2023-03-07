@@ -3,6 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import SeiyuuCard from "~/components/SeiyuuCard";
 import FeaturedSeiyuu from "~/components/FeaturedSeiyuu";
+import Form from "~/components/Form";
 
 interface seiyuuProps {
   seiyuu: {
@@ -32,6 +33,7 @@ const Home: NextPage<seiyuuProps> = ({ seiyuu }) => {
         <div className="border-2 border-emerald-600 flex flex-wrap gap-4 justify-center">
           <FeaturedSeiyuu seiyuu={seiyuu}/>
         </div>
+        <Form />
       </main>
     </>
   );
