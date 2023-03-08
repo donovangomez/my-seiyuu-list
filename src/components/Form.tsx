@@ -17,11 +17,12 @@ interface seiyuuProps {
 
 const Form: React.FC<seiyuuProps> = () => {
   const [searchInput, setSearchInput] = React.useState("Uwu");
-  const [seiyuu, setSeiyuu] = React.useState([]);
+  const [seiyuu, setSeiyuu] = React.useState<seiyuuProps["seiyuu"]>([]);
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(false);
+//   React.ChangeEvent<HTMLInputElement>
 
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSearch = (e: any) => {
     e.preventDefault();
     searchSeiyuu(searchInput);
     setSearchInput("");

@@ -33,7 +33,7 @@ const Home: NextPage<seiyuuProps> = ({ seiyuu }) => {
         <div className="border-2 border-emerald-600 flex flex-wrap gap-4 justify-center">
           <FeaturedSeiyuu seiyuu={seiyuu}/>
         </div>
-        <Form />
+        <Form seiyuu={seiyuu}/>
       </main>
     </>
   );
